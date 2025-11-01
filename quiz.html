@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Quiz • AI Study</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body { padding: 10px; }
+      .popup-header { display: flex; justify-content: space-between; align-items: center; }
+      .popup-title { margin: 0; font-size: 16px; }
+      .small { font-size: 12px; color: var(--muted); }
+      .quiz-toolbar { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+      .hint { font-size: 12px; color: var(--muted); }
+      .file-row { display: grid; gap: 6px; margin-top: 6px; }
+      .hidden { display: none !important; }
+    </style>
+  </head>
+  <body>
+    <header class="popup-header">
+      <h1 class="popup-title">Quiz (4 questions)</h1>
+      <span class="small">Prompt API</span>
+    </header>
+
+    <section class="card" aria-labelledby="h-source">
+      <div class="card-head">
+        <h2 id="h-source">Source</h2>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <label class="label">Use</label>
+          <select id="quiz-source" class="input">
+            <option value="page">Current page</option>
+            <option value="custom">Custom input</option>
+          </select>
+        </div>
+
+        <div class="row" id="custom-wrap" hidden aria-hidden="true">
+          <label class="label" for="custom-text">Custom text</label>
+          <textarea id="custom-text" class="textarea" rows="4" placeholder="Paste content here…"></textarea>
+        </div>
+
+        <!-- Multimodal (image/audio) shown if available -->
+        <div id="mm-wrap" class="file-row hidden">
+          <div class="hint">Optional: add an image or audio clip to include in the quiz context.</div>
+          <label class="label">Image</label>
+          <input id="img-input" type="file" accept="image/*" />
+          <label class="label">Audio</label>
+          <input id="aud-input" type="file" accept="audio/*" />
+        </div>
+
+        <div class="row quiz-toolbar">
+          <button id="btn-gen" class="btn btn-primary">Generate Quiz</button>
+          <button id="btn-reset" class="btn">Reset</button>
+          <div id="status" class="hint"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="h-quiz">
+      <div class="card-head">
+        <h2 id="h-quiz">Questions</h2>
+      </div>
+      <div class="card-body">
+        <div id="quiz-container" class="quiz"></div>
+        <div class="row">
+          <div id="score" class="muted">Score: 0 / 4</div>
+        </div>
+      </div>
+    </section>
+
+    <script type="module" src="quiz.js"></script>
+  </body>
+</html>

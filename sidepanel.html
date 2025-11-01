@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>AI Study Panel</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="sp-header">
+      <h1 class="sp-title">AI Study Panel</h1>
+      <div class="sp-actions">
+        <button id="btn-open-summarizer" class="btn">Summarizer</button>
+        <button id="btn-create-quiz" class="btn btn-primary">Create Quiz</button>
+      </div>
+    </header>
+
+    <!-- SUMMARIZER -->
+    <section class="card" id="sec-summarizer" aria-labelledby="h-summarizer">
+      <div class="card-head">
+        <h2 id="h-summarizer">Summarizer</h2>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <label class="label">Source</label>
+          <select id="summary-source" class="input">
+            <option value="page" selected>Current page</option>
+            <option value="custom">Custom input</option>
+          </select>
+        </div>
+
+        <!-- Study style selector (restored) -->
+        <div class="row">
+          <label class="label">Style</label>
+          <div class="segmented" id="style-chooser">
+            <button class="seg active" data-style="tldr">TL;DR</button>
+            <button class="seg" data-style="bullets">Key bullets</button>
+            <button class="seg" data-style="study-notes">Study notes</button>
+          </div>
+        </div>
+
+        <!-- start hidden; only shows when source == "custom" -->
+        <div class="row" id="custom-input-wrap" hidden aria-hidden="true">
+          <label for="custom-input" class="label">Custom text</label>
+          <textarea id="custom-input" class="textarea" rows="5" placeholder="Paste text here…"></textarea>
+        </div>
+
+        <div class="row">
+          <button id="btn-run-summary" class="btn">Run</button>
+        </div>
+
+        <div class="row">
+          <label class="label">Result</label>
+          <pre id="summary-output" class="output" aria-live="polite">— summary will appear here —</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONCEPT EXPLORER -->
+    <section class="card" id="sec-concepts" aria-labelledby="h-concepts">
+      <div class="card-head">
+        <h2 id="h-concepts">Concept Explorer</h2>
+        <p class="sub">Click a highlighted term on the page to preview it here.</p>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="stack">
+            <div class="muted cap">Selected concept</div>
+            <div id="concept-term" class="term">— none —</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <label class="label">Explanation</label>
+          <div id="concept-explanation" class="output">— explanation (coming soon) —</div>
+        </div>
+
+        <div class="row">
+          <label class="label">History</label>
+          <div id="concept-history" class="chips"></div>
+        </div>
+      </div>
+    </section>
+
+    <script type="module" src="sidepanel.js"></script>
+  </body>
+</html>
